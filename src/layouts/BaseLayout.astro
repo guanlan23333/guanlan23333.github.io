@@ -13,6 +13,8 @@ const {
   description = '27 届 AI 产品方向求职者，展示 SecondBrain、MerchantOps Copilot 等 AI Agent、RAG、工作流与产品评测项目。',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const [year, month] = profile.siteUpdated.split('-');
+const siteUpdatedDisplay = `${year}年${Number(month)}月`;
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -45,7 +47,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
     <main id="main"><slot /></main>
     <footer class="site-footer">
       <p><strong>{profile.name}</strong> · AI 产品与 Agent 应用作品集</p>
-      <p>内容只包含公开脱敏信息 · 2026</p>
+      <p>内容仅包含公开脱敏信息 · 最近更新：<time datetime={profile.siteUpdated}>{siteUpdatedDisplay}</time></p>
     </footer>
   </body>
 </html>
