@@ -1,0 +1,9 @@
+---
+interface Props { status: string }
+const { status } = Astro.props;
+const labels: Record<string, string> = {
+  idea: '构想', planning: '规划中', development: '开发中', alpha: 'Alpha',
+  testing: '测试中', released: '已发布', archived: '已归档',
+};
+---
+<span class={`status status-${status}`}>{labels[status] ?? status}</span>

@@ -1,0 +1,49 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+  project: {
+    data: {
+      title: string;
+      slug: string;
+      summary: string;
+      status: string;
+      role: string;
+      tags: string[];
+      results: string[];
+    };
+  };
+  index?: number;
+}
+
+const { project, index = 0 } = Astro.props;
+const evidence = project.data.results.slice(0, 3);
+---
+<article class="project-card">
+  <a href={`/projects/${project.data.slug}/`} aria-label={`查看 ${project.data.title} 案例`}>
+    <div class={`project-visual visual-${index % 2}`} aria-hidden="true">
+      <span>{project.data.tags[0]}</span>
+      <div class="flow-line">
+        <i></i><i></i><i></i><i></i>
+      </div>
+      <strong>{project.data.title}</strong>
+    </div>
+    <div class="project-copy">
+      <div class="project-meta">
+        <StatusBadge status={project.data.status} />
+        <span>{project.data.role}</span>
+      </div>
+      <h3>{project.data.title}</h3>
+      <p class="project-summary">{project.data.summary}</p>
+      {evidence.length > 0 && (
+        <ul class="evidence-list">
+          {evidence.map((item) => <li>{item}</li>)}
+        </ul>
+      )}
+      <div class="tags">
+        {project.data.tags.slice(0, 4).map((tag) => <span>{tag}</span>)}
+      </div>
+      <span class="text-link">查看完整案例 <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+</article>

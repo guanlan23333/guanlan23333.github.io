@@ -1,0 +1,25 @@
+{
+  "name": "guo-nanyan-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run validate:content && npm run check:privacy && astro check && astro build && npm run check:build",
+    "preview": "astro preview",
+    "new:project": "node scripts/new-content.mjs project",
+    "new:update": "node scripts/new-content.mjs update",
+    "validate:content": "node scripts/validate-content.mjs",
+    "check:privacy": "node scripts/check-privacy.mjs",
+    "check:build": "node scripts/check-build.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "6.0.3",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "6.4.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import { navigation } from '../data/navigation';
+import { profile } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = '郭南焱｜AI 产品与 Agent 应用作品集',
+  description = '27 届 AI 产品方向求职者，展示 SecondBrain、MerchantOps Copilot 等 AI Agent、RAG、工作流与产品评测项目。',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f4f9fc" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="返回首页">
+        <span class="brand-mark" aria-hidden="true">GN</span>
+        <span><strong>{profile.name}</strong><small>AI Product · Agent</small></span>
+      </a>
+      <nav aria-label="主导航">
+        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <p><strong>{profile.name}</strong> · AI 产品与 Agent 应用作品集</p>
+      <p>内容只包含公开脱敏信息 · 2026</p>
+    </footer>
+  </body>
+</html>

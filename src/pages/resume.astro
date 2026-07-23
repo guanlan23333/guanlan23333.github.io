@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+---
+<BaseLayout title="公开简历｜郭南焱" description="郭南焱的公开脱敏版 AI 产品方向简历。">
+  <article class="resume-page">
+    <header>
+      <p class="eyebrow">Public resume</p>
+      <h1>{profile.name}</h1>
+      <p class="resume-role">{profile.target}</p>
+      <ul><li>{profile.school}在读</li><li>{profile.graduation}</li><li>{profile.city} · {profile.availability}</li></ul>
+      <button class="button print-button" onclick="window.print()">打印 / 保存为 PDF</button>
+    </header>
+    <section><h2>个人定位</h2><p>面向 AI 产品与 Agent 应用方向，能够独立完成业务问题分析、产品方案、Agent 工作流、可运行 Demo、效果评测与项目交付。</p></section>
+    <section><h2>代表项目</h2><h3>SecondBrain Desktop</h3><p>将课程录音、视频和转录文本加工为可审核的结构化笔记，并发布到 Obsidian 与 Anki。当前为可运行 Alpha。</p><h3>MerchantOps Copilot</h3><p>面向中小电商运营的知识与经营数据分析 Agent，当前处于开发中。</p></section>
+    <section><h2>能力与工具</h2><p>业务流程分析、Agent、RAG、Prompt、状态机、人工审核、测试集、Bad Case；Python、FastAPI、SQL、Streamlit、PySide6、Git。</p></section>
+    <section><h2>联系</h2><p><a href={profile.github} target="_blank" rel="noreferrer">GitHub：guanlan23333</a></p></section>
+  </article>
+</BaseLayout>

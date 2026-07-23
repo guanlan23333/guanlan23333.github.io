@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { profile } from '../data/profile';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.priority - b.data.priority || b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime());
+const featured = projects.filter((project) => project.data.featured);
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">AI Product · Agent Workflow · Evaluation</p>
+      <h1><span class="hero-ink">把真实问题做成</span><span>可运行、可验证的</span><span class="hero-ink">AI 产品</span></h1>
+      <p class="hero-intro">武汉科技大学在读学生，目标 AI 产品经理与 Agent 应用方向。能从业务问题、产品方案推进到工作流、Demo、评测与交付。</p>
+      <div class="hero-actions">
+        <a class="button" href="#projects">查看代表项目</a>
+        <a class="button button-secondary" href="/resume/">查看公开简历</a>
+      </div>
+      <ul class="hero-facts" aria-label="求职信息">
+        <li><span>目标城市</span><strong>{profile.city}</strong></li>
+        <li><span>到岗情况</span><strong>{profile.availability}</strong></li>
+        <li><span>学生身份</span><strong>{profile.school}在读</strong></li>
+      </ul>
+    </div>
+    <div class="hero-system" aria-label="从问题到交付的工作路径">
+      <p>Product delivery path</p>
+      <ol>
+        <li><span>01</span><strong>业务问题</strong><small>场景、用户与约束</small></li>
+        <li><span>02</span><strong>Agent 工作流</strong><small>工具、状态与兜底</small></li>
+        <li><span>03</span><strong>可运行 Demo</strong><small>真实输入与输出</small></li>
+        <li><span>04</span><strong>评测与迭代</strong><small>指标、Bad Case、复盘</small></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="proof-strip" aria-label="能力证据摘要">
+    <div><strong>真实业务</strong><span>直播电商运营经历</span></div>
+    <div><strong>端到端</strong><span>方案 → Demo → 评测</span></div>
+    <div><strong>AI 实践</strong><span>Agent · RAG · Workflow</span></div>
+    <div><strong>工程交付</strong><span>Python · SQL · FastAPI</span></div>
+  </section>
+
+  <section class="section" id="projects">
+    <SectionHeading eyebrow="Selected work" title="代表项目与真实进展" intro="先看项目解决了什么问题，再看我做了哪些决策。没有证据的结果不会被包装成成果。" />
+    <div class="project-list">
+      {featured.map((project, index) => <ProjectCard project={project} index={index} />)}
+    </div>
+    <a class="text-link section-link" href="/projects/">查看全部项目 →</a>
+  </section>
+
+  <section class="section" id="capabilities">
+    <SectionHeading eyebrow="Capabilities" title="能力不做 Logo 墙，只连接项目证据" />
+    <div class="capability-grid">
+      <article><span>01</span><h3>业务问题分析</h3><p>从真实场景拆解目标用户、流程摩擦、边界和优先级。</p><a href="/projects/merchantops/">证据：MerchantOps →</a></article>
+      <article><span>02</span><h3>AI 工作流设计</h3><p>设计 Agent 路由、RAG、状态机、异常兜底和人工审核。</p><a href="/projects/secondbrain/">证据：SecondBrain →</a></article>
+      <article><span>03</span><h3>快速原型实现</h3><p>使用 Python、FastAPI、SQL 与 PySide6 把方案做成可运行 Demo。</p><a href="/projects/secondbrain/">证据：可运行 Alpha →</a></article>
+      <article><span>04</span><h3>验证与交付</h3><p>围绕测试集、评测指标、Bad Case、README 和版本迭代交付。</p><a href="/projects/merchantops/">证据：评测设计 →</a></article>
+    </div>
+  </section>
+
+  <section class="section origin-section" id="about">
+    <SectionHeading eyebrow="Why these projects" title="项目来自做过的事，不是教程复刻" />
+    <div class="origin-grid">
+      <article><p class="eyebrow">Commerce</p><h3>运营经历形成 MerchantOps 的业务判断</h3><p>真实直播电商运营经历让我先关注指标口径、经营决策和使用边界，再考虑模型能力。</p></article>
+      <article><p class="eyebrow">Learning</p><h3>课程材料处理需求形成 SecondBrain</h3><p>录音、视频和转录文本需要经过结构化、人工审核与多端发布，因此形成了可续跑的桌面流水线。</p></article>
+    </div>
+  </section>
+
+  <section class="section"><ContactCTA /></section>
+</BaseLayout>

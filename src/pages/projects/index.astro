@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.priority - b.data.priority || b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime());
+---
+<BaseLayout title="项目案例｜郭南焱 AI 产品作品集" description="AI Agent、RAG、工作流与产品评测项目案例。">
+  <header class="page-hero">
+    <p class="eyebrow">Projects</p>
+    <h1>从问题、决策到验证</h1>
+    <p>项目状态按真实进展展示；开发中的功能不会写成已完成。</p>
+  </header>
+  <section class="section compact-section">
+    <div class="project-list">
+      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+    </div>
+  </section>
+</BaseLayout>
