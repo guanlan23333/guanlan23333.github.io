@@ -13,6 +13,7 @@ const {
   description = '27 届 AI 产品方向求职者，展示 SecondBrain、MerchantOps Copilot 等 AI Agent、RAG、工作流与产品评测项目。',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImageUrl = new URL('/og-image.png', Astro.site ?? Astro.url.origin).href;
 const [year, month] = profile.siteUpdated.split('-');
 const siteUpdatedDisplay = `${year}年${Number(month)}月`;
 ---
@@ -23,14 +24,21 @@ const siteUpdatedDisplay = `${year}年${Number(month)}月`;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f4f9fc" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="郭南焱 · AI 产品与 Agent 应用作品集" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="郭南焱 · AI 产品与 Agent 应用作品集" />
     <title>{title}</title>
   </head>
   <body>
