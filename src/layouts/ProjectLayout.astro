@@ -16,7 +16,7 @@ const d = project.data;
         <div><dt>角色</dt><dd>{d.role}</dd></div>
         <div><dt>目标用户</dt><dd>{d.targetUsers.join('、')}</dd></div>
         <div><dt>最近更新</dt><dd>{d.lastUpdated.toLocaleDateString('zh-CN')}</dd></div>
-        <div><dt>当前状态</dt><dd>{d.status === 'alpha' ? '可运行 Alpha' : '开发中'}</dd></div>
+        <div><dt>当前状态</dt><dd><StatusBadge status={d.status} /></dd></div>
       </dl>
       <div class="case-actions">
         {d.demoUrl && <a class="button" href={d.demoUrl}>查看 Demo</a>}
