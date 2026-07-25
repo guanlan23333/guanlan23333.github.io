@@ -26,14 +26,35 @@ const featured = projects.filter((project) => project.data.featured);
         <li><span>学生身份</span><strong>{profile.school}在读</strong></li>
       </ul>
     </div>
-    <div class="hero-system" aria-label="从问题到交付的工作路径">
-      <p>Product delivery path</p>
-      <ol>
-        <li><span>01</span><strong>业务问题</strong><small>场景、用户与约束</small></li>
-        <li><span>02</span><strong>Agent 工作流</strong><small>工具、状态与兜底</small></li>
-        <li><span>03</span><strong>可运行 Demo</strong><small>真实输入与输出</small></li>
-        <li><span>04</span><strong>评测与迭代</strong><small>指标、Bad Case、复盘</small></li>
-      </ol>
+    <div class="hero-capabilities" id="capabilities" aria-label="能力展示">
+      <p>Capabilities</p>
+      <span class="cap-subtitle">从业务问题到可验证交付</span>
+      <div class="hero-cap-grid">
+        <article>
+          <span>01</span>
+          <h3>业务问题分析</h3>
+          <p>从真实场景拆解目标用户、流程摩擦、边界和优先级。</p>
+          <a href="/projects/merchantops/">证据：MerchantOps →</a>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>AI 工作流设计</h3>
+          <p>设计 Agent 路由、知识检索、状态、异常兜底与人工审核。</p>
+          <a href="/projects/secondbrain/">证据：SecondBrain →</a>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>快速原型实现</h3>
+          <p>使用 Tauri、React、Python、FastAPI 与 SQL 把方案做成可运行 Demo。</p>
+          <a href="/projects/secondbrain/">证据：可运行 Alpha →</a>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>验证与交付</h3>
+          <p>围绕测试集、评测指标、Bad Case、README 和版本迭代交付。</p>
+          <a href="/projects/merchantops/">证据：评测设计 →</a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -50,16 +71,6 @@ const featured = projects.filter((project) => project.data.featured);
       {featured.map((project, index) => <ProjectCard project={project} index={index} />)}
     </div>
     <a class="text-link section-link" href="/projects/">查看全部项目 →</a>
-  </section>
-
-  <section class="section" id="capabilities">
-    <SectionHeading eyebrow="Capabilities" title="能力不做 Logo 墙，只连接项目证据" />
-    <div class="capability-grid">
-      <article><span>01</span><h3>业务问题分析</h3><p>从真实场景拆解目标用户、流程摩擦、边界和优先级。</p><a href="/projects/merchantops/">证据：MerchantOps →</a></article>
-      <article><span>02</span><h3>AI 工作流设计</h3><p>设计 Agent 路由、知识检索、状态、异常兜底与人工审核。</p><a href="/projects/secondbrain/">证据：SecondBrain →</a></article>
-      <article><span>03</span><h3>快速原型实现</h3><p>使用 Tauri、React、Python、FastAPI 与 SQL 把方案做成可运行 Demo。</p><a href="/projects/secondbrain/">证据：可运行 Alpha →</a></article>
-      <article><span>04</span><h3>验证与交付</h3><p>围绕测试集、评测指标、Bad Case、README 和版本迭代交付。</p><a href="/projects/merchantops/">证据：评测设计 →</a></article>
-    </div>
   </section>
 
   <section class="section origin-section" id="about">
