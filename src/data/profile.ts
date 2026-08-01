@@ -7,5 +7,5 @@ export const profile = {
   availability: '可长期线下实习',
   email: '',
   github: 'https://github.com/guanlan23333',
-  siteUpdated: '2026-07',
+  siteUpdated: '2026-08',
 };
